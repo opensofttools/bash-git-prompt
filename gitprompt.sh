@@ -6,11 +6,13 @@ function async_run() {
   }&
 }
 
+# 获取文件路径
 function git_prompt_dir() {
   # assume the gitstatus.sh is in the same directory as this script
   # code thanks to http://stackoverflow.com/questions/59895
   if [[ -z "${__GIT_PROMPT_DIR:+x}" ]]; then
     local SOURCE="${BASH_SOURCE[0]}"
+    # 判断是否是符号链接 -h
     while [[ -h "${SOURCE}" ]]; do
       local DIR="$( command cd -P "$( dirname "${SOURCE}" )" && pwd )"
       SOURCE="$(readlink "${SOURCE}")"
@@ -24,6 +26,7 @@ function echoc() {
   echo -e "${1}${2}${ResetColor}" | sed 's/\\\]//g'  | sed 's/\\\[//g'
 }
 
+# 获取主题
 function get_theme() {
   local CUSTOM_THEME_FILE="${HOME}/.git-prompt-colors.sh"
   if [[ ! (-z "${GIT_PROMPT_THEME_FILE:+x}" ) ]]; then
