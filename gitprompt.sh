@@ -28,6 +28,7 @@ function echoc() {
 
 # 获取主题
 function get_theme() {
+  # 是否有自定义主题
   local CUSTOM_THEME_FILE="${HOME}/.git-prompt-colors.sh"
   if [[ ! (-z "${GIT_PROMPT_THEME_FILE:+x}" ) ]]; then
     CUSTOM_THEME_FILE="${GIT_PROMPT_THEME_FILE}"
@@ -35,6 +36,7 @@ function get_theme() {
   local DEFAULT_THEME_FILE="${__GIT_PROMPT_DIR}/themes/Default.bgptheme"
 
   if [[ -z "${GIT_PROMPT_THEME+x}" ]]; then
+    # 读取文件
     if [[ -r "${CUSTOM_THEME_FILE}" ]]; then
       GIT_PROMPT_THEME="Custom"
       __GIT_PROMPT_THEME_FILE="${CUSTOM_THEME_FILE}"
