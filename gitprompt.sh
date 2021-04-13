@@ -307,6 +307,8 @@ function git_prompt_config() {
 }
 
 function setLastCommandState() {
+  # trap 'previous_command=$this_command; this_command=$BASH_COMMAND' DEBUG
+  # echo "last command is $previous_command"
   GIT_PROMPT_LAST_COMMAND_STATE="${?}"
 }
 
@@ -601,8 +603,7 @@ function updatePrompt() {
     NEW_PROMPT="${EMPTY_PROMPT}"
   fi
 
-  PS1="${NEW_PROMPT//_LAST_COMMAND_INDICATOR_/${LAST_COMMAND_INDICATOR}${ResetColor}}"
-  command rm "${GIT_INDEX_PRIVATE}" 2>/dev/null
+  PS1="${NEW_PROMPT//_LAST_COMMAND_INDICATOR_/${LAST_COMMAND_INDICATOR} $(kube_ps1)${ResetColor}}"
 }
 
 # Helper function that returns virtual env information to be set in prompt
