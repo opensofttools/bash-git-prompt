@@ -29,7 +29,7 @@ unset_git_prompt_colors() {
 }
 
 define_helpers() {
-  Time12a="\e[0;33m\]\D{%F %T}"
+  Time12a="\e[1;36m\]\D{%F %T}"
   PathShort="[\u@\H] \w";
 }
 
